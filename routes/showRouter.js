@@ -13,7 +13,7 @@ router.get('/:id', async (req,res) => {
     res.json(show);
 });
 
-router.get("/:id/:userId", async (req, res) => {
+router.get("/:id/users", async (req, res) => {
     const show = await Show.findByPk(req.params.id, {
         include: User
     });
