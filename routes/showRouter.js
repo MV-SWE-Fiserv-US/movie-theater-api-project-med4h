@@ -20,3 +20,25 @@ router.get("/:id/users", async (req, res) => {
     res.json(show);
 });
 
+router.put('/:id', async (req, res) => {
+    const show = await Show.findByPk(req.params.id);
+    show.available = req.body.available;
+    await show.save();
+    res.json(show);
+});
+
+router.delete('/:id', async (req, res) => {
+    const show = await Show.findByPk(req.params.id);
+    await show.destroy();
+});
+
+router.get('/', async (req, res) => {
+    const shows = await Show.findAll({
+        where: {
+            genre: req.query.genre
+        }
+    });
+    res.json(shows);
+});
+
+module.exports = router;

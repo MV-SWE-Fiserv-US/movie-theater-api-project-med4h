@@ -20,4 +20,18 @@ router.get("/:id/shows", async (req, res) => {
     res.json(user);
 });
 
-//router.put('/id/shows/:showId', async (req, res) => {
+router.put(
+'/:id/shows/:showId', async (req, res) => {
+    const { id, showId } = req.params;
+    const user = await User.findByPk(id);
+    const show = await Show.findByPk(showId);
+
+    if (user && show) {
+        await user.addShow(show);
+        res.status(200).json({ message: 'Show associated with user successfully' });
+    } else {
+        res.status(404).json({ error: 'User or Show not found' });
+    }
+})
+
+module.exports = router;
