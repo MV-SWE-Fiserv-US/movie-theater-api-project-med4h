@@ -1,8 +1,8 @@
 const express = require('express');
-const app = express();
+//const app = express();
 const port = 3000;
 const app = require("./app")
-const db = require("./db/connection");
+const { db } = require("./db/connection");
 const router = express.Router();
 
 

@@ -13,7 +13,7 @@ router.get('/:id', async (req,res) => {
     res.json(show);
 });
 
-router.get("/:id/users", async (req, res) => {
+router.get("/:id/:userId", async (req, res) => {
     const show = await Show.findByPk(req.params.id, {
         include: User
     });
@@ -32,13 +32,13 @@ router.delete('/:id', async (req, res) => {
     await show.destroy();
 });
 
-router.get('/', async (req, res) => {
-    const shows = await Show.findAll({
-        where: {
-            genre: req.query.genre
-        }
-    });
-    res.json(shows);
-});
+// router.get('/', async (req, res) => {
+//     const shows = await Show.findAll({
+//         where: {
+//             genre: req.query.genre
+//         }
+//     });
+//     res.json(shows);
+// });
 
 module.exports = router;
